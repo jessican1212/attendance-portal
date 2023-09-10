@@ -43,19 +43,20 @@ function App() {
     }
     
   return (
-    <div>
+    <div id="container">
+      <img src="favicon.ico" height="140px"/>
       { user ? (
         validUser ? (
           <div>
             <Dashboard name={user.displayName} email={user.email}/>
-            <button onClick={logOut}>Log Out</button>
+            <button class="logBtn" onClick={logOut}>Log Out</button>
           </div>
         ) : (
           <div>
             <h1>Cubstart Web Attendance Portal</h1>
             <h3>Fall 2023 | UC Berkeley</h3>
-            <p>{user.displayName}, we cannot find your email {user.email} in our database. Please try again with a different email, or you are not registered for this course.</p>
-            <button onClick={logOut}>Log Out</button>
+            <p>{user.displayName}, we cannot find your email <u>{user.email}</u> in our database. Please try again with a different email, or you are not registered for this course.</p>
+            <button class="logBtn" onClick={logOut}>Log Out</button>
             {admin ? (
               <Admin />
             ): (<></>)}
@@ -65,7 +66,7 @@ function App() {
         <div>
           <h1>Cubstart Web Attendance Portal</h1>
           <h3>Fall 2023 | UC Berkeley</h3>
-          <button onClick={logIn}>Log In</button>
+          <button class="btn" onClick={logIn}>Log In</button>
         </div>
       )}
     </div>

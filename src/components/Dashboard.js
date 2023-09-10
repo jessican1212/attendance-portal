@@ -40,7 +40,6 @@ const Dashboard = (props) => {
         if (userInput == secretWord) {
             setLoading(true);
             const s = await findStudent(props.email);
-            console.log("a");
             if (!s) {
                 await setDoc(doc(db, "students", props.email), {
                     "Lecture 1": false,
@@ -64,10 +63,8 @@ const Dashboard = (props) => {
                     "Lab 9": false,
                     "Lab 10": false,
                 });
-                console.log("b");
             }
             await updateStudent(props.email, value);
-            console.log("c");
             setLoading(false);
             alert("Your attendance for " + value + ' has been recorded. Thank you for coming!');
         } else {
@@ -85,12 +82,13 @@ const Dashboard = (props) => {
 
   return (
     <div>
-        <h1>{props.name}'s Attendance Portal</h1>
-        <h2>{props.email}</h2>
+        <h1>Cubstart Web Attendance Portal</h1>
+        <h2>Hello {props.name}!</h2>
+        <h4>{props.email}</h4>
         <p>Select from the following:</p>
-        <button onClick={toggleLecture}>Lecture</button>
-        <button onClick={toggleLab}>Lab</button>
-
+        <button onClick={toggleLecture} class="btn">Lecture</button>
+        <button onClick={toggleLab} class="btn">Lab</button>
+        <br></br>
         {toggle ? (
             <select id="dropdown">
                 <option value="Lecture 1">Lecture 1</option>
@@ -123,7 +121,7 @@ const Dashboard = (props) => {
             <p>Secret Word:</p>
             <input type="text" id="userInput"/>
         </label>
-        <button onClick={checkSecretWord}>Submit</button>
+        <button onClick={checkSecretWord} id="submitBtn">Submit</button>
         {loading ? <p>loading...</p> : <></>}
     </div>
   )
