@@ -9,6 +9,8 @@ import app from './components/firebase';
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
+const ADMIN = ["jessicang1212@gmail.com", "madhav@calhacks.io"]
+
 function App() {
   const [user, setUser] = useState(null);
   const [validUser, setValidUser] = useState(false);
@@ -18,7 +20,7 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        if (user.email == "jessicang1212@gmail.com" || user.email == "madhav.v@berkeley.edu") {
+        if (ADMIN.indexOf(user.email) != -1) {
           setAdmin(true);
         }
         const e = user.email;
