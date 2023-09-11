@@ -31,6 +31,10 @@ const Dashboard = (props) => {
     }
 
     async function checkSecretWord() {
+        if (!activeButton) {
+            alert("Please select a lecture or lab.");
+            return;
+        }
         const userInput = document.getElementById('userInput').value;
         const value = document.getElementById('dropdown').value;
         const secretWord = getWord(value);
@@ -59,6 +63,7 @@ const Dashboard = (props) => {
                     "Lab 8": false,
                     "Lab 9": false,
                     "Lab 10": false,
+                    "Total": 0,
                 });
             }
             await updateStudent(props.email, value);
@@ -72,8 +77,12 @@ const Dashboard = (props) => {
 
     async function updateStudent(e, value) {
         const docRef = doc(db, "students", e);
+        const d = await getDoc(docRef);
+        const res = d.data();
+        const newTotal = res["Total"];
         await updateDoc(docRef, {
-            [value]: true
+            [value]: true,
+            "Total": newTotal+1,
         })
     }
 
@@ -86,15 +95,11 @@ const Dashboard = (props) => {
         <button
         onClick={() => handleButtonClick('button1')}
         className={activeButton === 'button1' ? 'active' : ''}
-      >
-        Lecture
-      </button>
+      >Lecture</button>
       <button
         onClick={() => handleButtonClick('button2')}
         className={activeButton === 'button2' ? 'active' : ''}
-      >
-        Lab
-      </button>
+      >Lab</button>
 
       <div className="display-area">
         {activeButton === 'button1' && <div>
