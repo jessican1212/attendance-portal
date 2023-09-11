@@ -2,21 +2,18 @@ import React, {useState} from 'react'
 import secretWordsJson from '../secretWords.json';
 import { getFirestore, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import app from './firebase'
+import './Dashboard.css';
 
 const db = getFirestore(app);
 
 const Dashboard = (props) => {
 
-    const [toggle, setToggle] = useState(true);
+    const [activeButton, setActiveButton] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    function toggleLecture() {
-        setToggle(true);
-    }
-
-    function toggleLab() {
-        setToggle(false);
-    }
+    const handleButtonClick = (buttonName) => {
+        setActiveButton(buttonName);
+    };
 
     function getWord(x) {
         const res = secretWordsJson.find(el => el.key === x);
@@ -86,11 +83,22 @@ const Dashboard = (props) => {
         <h2>Hello {props.name}!</h2>
         <h4>{props.email}</h4>
         <p>Select from the following:</p>
-        <button onClick={toggleLecture} class="btn">Lecture</button>
-        <button onClick={toggleLab} class="btn">Lab</button>
-        <br></br>
-        {toggle ? (
-            <select id="dropdown">
+        <button
+        onClick={() => handleButtonClick('button1')}
+        className={activeButton === 'button1' ? 'active' : ''}
+      >
+        Lecture
+      </button>
+      <button
+        onClick={() => handleButtonClick('button2')}
+        className={activeButton === 'button2' ? 'active' : ''}
+      >
+        Lab
+      </button>
+
+      <div className="display-area">
+        {activeButton === 'button1' && <div>
+        <select id="dropdown">
                 <option value="Lecture 1">Lecture 1</option>
                 <option value="Lecture 2">Lecture 2</option>
                 <option value="Lecture 3">Lecture 3</option>
@@ -102,8 +110,9 @@ const Dashboard = (props) => {
                 <option value="Lecture 9">Lecture 9</option>
                 <option value="Lecture 10">Lecture 10</option>
             </select>
-        ) : (
-            <select id="dropdown">
+            </div>}
+        {activeButton === 'button2' && <div>
+        <select id="dropdown">
                 <option value="Lab 1">Lab 1</option>
                 <option value="Lab 2">Lab 2</option>
                 <option value="Lab 3">Lab 3</option>
@@ -115,7 +124,10 @@ const Dashboard = (props) => {
                 <option value="Lab 9">Lab 9</option>
                 <option value="Lab 10">Lab 10</option>
             </select>
-        )}
+            </div>}
+      </div>
+        
+        
         
         <label>
             <p>Secret Word:</p>

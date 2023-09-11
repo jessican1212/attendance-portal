@@ -8,7 +8,7 @@ body{
     background-color: white;
     width: 50vw;
     margin: auto;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 10px 35px 0px;
+    box-shadow: rgba(100, 100, 111, 0.2) 3px 2px;
     padding: 70px 10px;
     margin-top: 100px;
     margin-bottom: 100px;
@@ -22,7 +22,7 @@ h1, h2, h4, p{
     margin: 10px;
 }
 
-.btn{
+.logIn{
     margin: 0px 10px;
     width: 90px;
     background-color: #3e9ec4;
@@ -30,12 +30,11 @@ h1, h2, h4, p{
     color: white;
     font-weight: 600;
     border: none;
-    box-shadow: rgba(0, 0, 0, 0.307) 0px 5px 20px 0px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     cursor: pointer;
 }
 
-.btn:hover{
-    box-shadow: rgba(0, 0, 0, 0.228) 0px 5px 20px 0px;
+.logIn:hover{
     transform: translate(1px, 2px);
     background-color: white;
     color: #3e9ec4;
@@ -70,6 +69,7 @@ h1, h2, h4, p{
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 #submitBtn:hover{
@@ -77,13 +77,20 @@ h1, h2, h4, p{
     color: #016f9b;
 }
 
-.logBtn{
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 15px 0px;
+.logOutBtn{
+    background-color: rgb(222, 222, 222);
     color: black;
-    border: 1px solid rgb(202, 202, 202);
     padding: 5px 20px;
     margin-top: 30px;
     cursor: pointer;
+    width: 95px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.logOutBtn:hover{
+    background-color: rgb(198, 197, 197);
+    transform: translate(1px, 2px);
+    color: black;
 }
 
 @media only screen and (max-width: 1000px) {
