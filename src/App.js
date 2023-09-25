@@ -9,7 +9,7 @@ import app from './components/firebase';
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
-const ADMIN = ["jessicang1212@gmail.com", "madhav@calhacks.io"]
+const ADMIN = ["jessicang@calhacks.io", "madhav@calhacks.io"]
 
 function App() {
   const [user, setUser] = useState(null);
@@ -20,7 +20,7 @@ function App() {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
-        if (ADMIN.indexOf(user.email) != -1) {
+        if (ADMIN.includes(user.email)) {
           setAdmin(true);
         }
         const e = user.email;
@@ -46,19 +46,19 @@ function App() {
     
   return (
     <div id="container">
-      <img src="favicon.ico" height="140px"/>
+      <img src="favicon.ico" height="140px" alt="logo"/>
       { user ? (
         validUser ? (
           <div>
             <Dashboard name={user.displayName} email={user.email}/>
-            <button class="logOutBtn" onClick={logOut}>Log Out</button>
+            <button className="logOutBtn" onClick={logOut}>Log Out</button>
           </div>
         ) : (
           <div>
             <h1>Cubstart Web Attendance Portal</h1>
             <h3>Fall 2023 | UC Berkeley</h3>
             <p>{user.displayName}, we cannot find your email <u>{user.email}</u> in our database. Please try again with a different email, or you are not registered for this course.</p>
-            <button class="logOutBtn" onClick={logOut}>Log Out</button>
+            <button className="logOutBtn" onClick={logOut}>Log Out</button>
             {admin ? (
               <Admin />
             ): (<></>)}
@@ -68,7 +68,7 @@ function App() {
         <div>
           <h1>Cubstart Web Attendance Portal</h1>
           <h3>Fall 2023 | UC Berkeley</h3>
-          <button class="logIn" onClick={logIn}>Log In</button>
+          <button className="logIn" onClick={logIn}>Log In</button>
         </div>
       )}
     </div>

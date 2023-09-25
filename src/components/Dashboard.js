@@ -38,13 +38,13 @@ const Dashboard = (props) => {
         const userInput = document.getElementById('userInput').value;
         const value = document.getElementById('dropdown').value;
         const secretWord = getWord(value);
-        if (userInput == secretWord) {
+        if (userInput === secretWord) {
             setLoading(true);
             const s = await findStudent(props.email);
             if (!s) {
                 await setDoc(doc(db, "students", props.email), {
-                    "Lecture 1": false,
-                    "Lecture 2": false,
+                    "Lecture 1": null,
+                    "Lecture 2": null,
                     "Lecture 3": false,
                     "Lecture 4": false,
                     "Lecture 5": false,
@@ -53,8 +53,8 @@ const Dashboard = (props) => {
                     "Lecture 8": false,
                     "Lecture 9": false,
                     "Lecture 10": false,
-                    "Lab 1": false,
-                    "Lab 2": false,
+                    "Lab 1": null,
+                    "Lab 2": null,
                     "Lab 3": false,
                     "Lab 4": false,
                     "Lab 5": false,
@@ -104,8 +104,6 @@ const Dashboard = (props) => {
       <div className="display-area">
         {activeButton === 'button1' && <div>
         <select id="dropdown">
-                <option value="Lecture 1">Lecture 1</option>
-                <option value="Lecture 2">Lecture 2</option>
                 <option value="Lecture 3">Lecture 3</option>
                 <option value="Lecture 4">Lecture 4</option>
                 <option value="Lecture 5">Lecture 5</option>
@@ -118,8 +116,6 @@ const Dashboard = (props) => {
             </div>}
         {activeButton === 'button2' && <div>
         <select id="dropdown">
-                <option value="Lab 1">Lab 1</option>
-                <option value="Lab 2">Lab 2</option>
                 <option value="Lab 3">Lab 3</option>
                 <option value="Lab 4">Lab 4</option>
                 <option value="Lab 5">Lab 5</option>
